@@ -3,7 +3,12 @@ let mongoose = require('mongoose');
 require('dotenv').config();
 let axios = require('axios');
 const cors = require('cors');
-const Routes = require('./routes/Routes');
+// const Routes = require('./routes/Routes');
+
+
+const authRoutes = require('./routes/authRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
+const saveRoutes = require('./routes/saveRoutes');
 
 
 let app = express();
@@ -13,11 +18,16 @@ let app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/auth', Routes);
-app.use('/api/recipes', Routes); // Assuming you want to use the same routes for recipes
-// app.use('/api/genrateRecipes', Routes); // Assuming you want to use the same routes for recipes
+// // Routes
+// app.use('/api/auth', Routes);
+// app.use('/api/recipes', Routes); // Assuming you want to use the same routes for recipes
+// // app.use('/api/genrateRecipes', Routes); // Assuming you want to use the same routes for recipes
 
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/recipes', recipeRoutes);
+app.use('/api', saveRoutes);
 
 
 
